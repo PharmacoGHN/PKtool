@@ -14,35 +14,38 @@
 
 pm2monolix <- function(input_file = NULL,
                        iv = TRUE,
-                       pm_vers = 'old',
-                       output_file = "pm2monolix.csv"){
-
+                       pm_vers = "old",
+                       output_file = "pm2monolix.csv") {
   # test if inputype is correct _______________________________________________________________________
-  if(is.null(input_file) == T){
-    rlang::abort(message = 'Error: no file provided')
+  if (is.null(input_file) == TRUE) {
+    rlang::abort(message = "Error: no file provided")
   }
 
-  if(is.character(input_file) == F){
+  if (is.character(input_file) == FALSE) {
     rlang::abort(message = "Error : input file name provided was not a character")
   }
 
-  if(is.character(output_file) == F){
+  if (is.character(output_file) == FALSE) {
     rlang::abort(message = "Error : output file name provided was not a character")
   }
 
-  if(is.character(pm_vers) == F){
+  if (is.character(pm_vers) == FALSE) {
     rlang::abort(message = "Error : the argument pm_vers provided was not a character")
   }
   # loading instruction for pmetrics datafile ________________________________________________________
 
-  if(isTRUE(pm_vers == "old")){
-    skip = 1
-  } else { skip = 0}
+  if (isTRUE(pm_vers == "old")) {
+    skip <- 1
+  } else {
+    skip <- 0
+  }
 
   # check is file provided is csv
-  if(isTRUE(tools::file_ext(input_file) == "csv")){
-    df <- readr::read_csv(input_file, skip = skip,
-                          show_col_types = FALSE)
+  if (isTRUE(tools::file_ext(input_file) == "csv")) {
+    df <- readr::read_csv(input_file,
+      skip = skip,
+      show_col_types = FALSE
+    )
   }
 
   # standardize all header into uppercase
@@ -51,17 +54,18 @@ pm2monolix <- function(input_file = NULL,
   # re order data file to match monolix design
 
   # column type
-  df_lixoft = cbind(df[1], df$EVID, df$DOSE, df$OUT, df$EVID, df$DUR, df$ADDL, df$II,
-                    df[,(which(colnames(df)=="C3")+1):length(df[1,])])
+  df_lixoft <- cbind(
+    df[1], df$EVID, df$DOSE, df$OUT, df$EVID, df$DUR, df$ADDL, df$II,
+    df[, (which(colnames(df) == "C3") + 1):length(df[1, ])]
+  )
 
   # rename column to match lixoft design
-  names(df_lixoft)[1:8] = c('ID', 'TIME', 'AMOUNT', 'CONC', 'EVENT ID', 'TINF', 'ADDL', 'II')
+  names(df_lixoft)[1:8] <- c("ID", "TIME", "AMOUNT", "CONC", "EVENT ID", "TINF", "ADDL", "II")
 
   # if iv = F remove the duration col
-  if(isFALSE(iv)){
-
+  if (isFALSE(iv)) {
     df_lixoft <- df_lixoft %>%
-      dplyr::select(-TINF)
+      dplyr::select(-.data$TINF)
   }
 
 

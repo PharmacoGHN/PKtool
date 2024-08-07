@@ -1,0 +1,30 @@
+PASTRx Version: 1.3.0.41.     2022/06/28 16:02         !version, date this file written.
+   1      2022/06/17 11:47    2020/03/05 12:00         !Format key, created on, date of next regimen
+VANCEER             1           FN Unknown genetic grou! Last, First, Ethnic grp., Gender(F/M), Dialysis(D/N)
+REA       REA       1      in 168.0 100 1975/06/17     !Chart,Ward,Room,cm/in,hgt(cm), muscle %,Birth(yr/mn/dy)
+   2                                                   !no. of Effects
+   2 Weight                             M3020          !No. samples, name, units, Metric indicator
+   0.0000000         250.0000000                       !Minimum, Maximum values
+kg                 1.0000      7                       !unit str, conversion factor, precision
+lbs                2.2046      6                       !unit str, conversion factor, precision
+2020/03/02 14:00      84.0000000                       !Date-time, value, comment
+2020/03/04 01:30      80.0000000                       !Date-time, value, comment
+   0 SCr                                M2030          !No. samples, name, units, Metric indicator
+   0.0000000          30.0000000                       !Minimum, Maximum values
+mg/dL              1.0000      7                       !unit str, conversion factor, precision
+ug/mL             10.0000      6                       !unit str, conversion factor, precision
+ng/mL          10000.0000      3                       !unit str, conversion factor, precision
+   1                                                   !No. of drugs
+<Select>               0.00000     3   3               !Drug name, MIC,# dose entries,# Serum entries
+1                                                      !Dose units(0 = 0.001:ug, 1 = 1.0:mg, 2 = 1000.:gm)
+1                                                      !Dose units display(0 = 0.001:ug, 1 = 1.0:mg, 2 = 1000.:gm)
+!  Date-time     route       rate          time          dose          CCr     *=calc	*=actual
+2020/03/02 14:00  IV    20.01875293    21.33000000   427.00000000    26.20000000  
+2020/03/03 11:40  IV   260.00000000     2.00000000   520.00000000    26.20000000  
+2020/03/03 13:40  IV    40.00000000    23.00000000   920.00000000    27.50000000  
+ug/mL                                                  !Serum level units
+ug/mL                                                  !Serum level units display
+2020/03/03 12:00       18.400000                       !Date-time, value, comment
+2020/03/04 01:30       55.700000                       !Date-time, value, comment
+2020/03/04 11:00       25.600000                       !Date-time, value, comment
+   0                                                   !No. of Covariate records
