@@ -9,15 +9,17 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-1853-2932"))
   )
 Description: What the package does (one paragraph).
-License: GPL (>= 3)
+License: GPL (>= 3) + file LICENSE
 Imports: 
     dplyr,
+    openxlsx,
     readr,
     rlang,
+    stringr,
     tools,
-    usethis,
     utils
 Suggests: 
+    readxl,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Encoding: UTF-8
