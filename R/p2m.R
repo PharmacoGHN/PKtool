@@ -2,10 +2,9 @@
 #'
 #' 'pm2monolix' is a function intended to transform a pm file into a file readable by Monolix(R)
 #'
-#' @import usethis
-#' @param input_file = dataset
-#' @param iv = TRUE or FALSE
-#' @param output_file = name given to the file. default = "translate.csv"
+#' @param input_file datafile
+#' @param iv is drug given by iv route ? (TRUE or FALSE)
+#' @param output_file name given to the file. default = "translate.csv"
 #' @param pm_vers a string argument that can take either "old" or "new". Refer to the datafile version of
 #' Pmetrics. Old represent the version before 1.97.0
 #'
@@ -64,8 +63,8 @@ pm2monolix <- function(input_file = NULL,
 
   # if iv = F remove the duration col
   if (isFALSE(iv)) {
-    df_lixoft <- df_lixoft %>%
-      dplyr::select(-.data$TINF)
+    df_lixoft <- df_lixoft |>
+      dplyr::select(-"TINF")
   }
 
 

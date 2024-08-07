@@ -23,6 +23,10 @@ not_in <- function(a, b) {
 #' get the file extension and the separator values and call the adequate
 #' function to read file.
 #'
+#' ex : if a file was created with excel, the extension could either be
+#' .xls or .xslx but would open with specific function.
+#' The same applies to read.csv and read.csv2
+#'
 #' @noRd
 
 auto_read <- function(file, sep = ",", ...) {

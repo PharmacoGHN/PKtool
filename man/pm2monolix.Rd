@@ -12,14 +12,14 @@ pm2monolix(
 )
 }
 \arguments{
-\item{input_file}{= dataset}
+\item{input_file}{datafile}
 
-\item{iv}{= TRUE or FALSE}
+\item{iv}{is drug given by iv route ? (TRUE or FALSE)}
 
 \item{pm_vers}{a string argument that can take either "old" or "new". Refer to the datafile version of
 Pmetrics. Old represent the version before 1.97.0}
 
-\item{output_file}{= name given to the file. default = "translate.csv"}
+\item{output_file}{name given to the file. default = "translate.csv"}
 }
 \description{
 'pm2monolix' is a function intended to transform a pm file into a file readable by Monolix(R)
