@@ -2,6 +2,9 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/PharmacoGHN/PKtool/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/PharmacoGHN/PKtool/actions/workflows/R-CMD-check.yaml)
+[![codecov](https://codecov.io/gh/PharmacoGHN/PKtool/graph/badge.svg?token=8CKVAD4810)](https://codecov.io/gh/PharmacoGHN/PKtool)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![License: GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-project.org/web/licenses/GPL-3)
 <!-- badges: end -->
 
 ## Package Content  
@@ -22,7 +25,7 @@ Currently supported format are :
 ## Installation
 
 ```r 
-install.packages("PKtool_1.0.0.tar.gz"")
+install.packages("PKtool_1.0.0.tar.gz")
 devtools::install_github("PharmacoGHN/PKtool")
 ```
 
