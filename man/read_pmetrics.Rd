@@ -4,16 +4,20 @@
 \alias{read_pmetrics}
 \title{read_pmetrics}
 \usage{
-read_pmetrics(dataset, pm_vers = NULL)
+read_pmetrics(data, pm_vers = NULL, ...)
 }
 \arguments{
-\item{dataset}{is the name of the .csv file to read}
+\item{data}{is the name of the file to read (csv, xlsx and xls file supported)}
 
-\item{pm_vers}{correspond to the version of Pmetrics.
-Can take either 1 for all version before the 2.0.0 or 2 for all version above the 2.0.0}
+\item{pm_vers}{correspond to the version of Pmetrics. Can take either 1 for all version before the 2.0.0 or 2 for all version above the 2.0.0}
+
+\item{...}{additionnal argument that can be passed on read function (see utils::read.csv() and readxl::read_excel())}
 }
 \description{
 this function purpose is to read and extract data from a pmetrics file.
 It is the first step before any translation of a Pmetrics type file into
 another software type.
+}
+\author{
+Romain Garreau
 }

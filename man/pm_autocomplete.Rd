@@ -12,3 +12,6 @@ pm_autocomplete(data)
 \description{
 this function will add the necessary covariate in order to translate an incomplete Pmetrics file (Version 2 only)
 }
+\author{
+Romain Garreau
+}

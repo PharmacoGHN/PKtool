@@ -52,6 +52,8 @@ pm2monolix <- function(input_file = NULL,
 
   # re order data file to match monolix design
 
+  # create new numerical ID specially for Pmetrics but add a column with matching previous ID.
+
   # column type
   df_lixoft <- cbind(
     df[1], df$EVID, df$DOSE, df$OUT, df$EVID, df$DUR, df$ADDL, df$II,

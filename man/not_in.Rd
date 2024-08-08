@@ -14,3 +14,6 @@ not_in(a, b)
 \description{
 not_in = not in operator
 }
+\author{
+Romain Garreau
+}

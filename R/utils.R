@@ -11,6 +11,7 @@ NULL
 #' @param a value to check can be list or string
 #' @param b value in which a is searched for, can be a single string or list of strings
 #'
+#' @author Romain Garreau
 #' @export
 
 not_in <- function(a, b) {
@@ -20,6 +21,7 @@ not_in <- function(a, b) {
 
 #' auto_read
 #'
+#' @description
 #' get the file extension and the separator values and call the adequate
 #' function to read file.
 #'
@@ -27,12 +29,16 @@ not_in <- function(a, b) {
 #' .xls or .xslx but would open with specific function.
 #' The same applies to read.csv and read.csv2
 #'
-#' @noRd
+#' @param file path to the file you want to import
+#' @param sep which separator
+#' @param ... additionnal argument that can be passed on read function (see utils::read.csv() and readxl::read_excel())
+#'
+#' @author Romain Garreau
+#' @export
 
 auto_read <- function(file, sep = ",", ...) {
   file_extension <- tools::file_ext(file)
 
-  # check file extension and sperator are valid.
   if (not_in(file_extension, c("csv", "xls", "xlsx"))) {
     stop("your file must be a csv or an excel (xls or xlsx).")
   }

@@ -12,3 +12,6 @@ pm_check_colname(data)
 \description{
 function that check if the minimum colnames required to used Pmetrics are here.
 }
+\author{
+Romain Garreau
+}

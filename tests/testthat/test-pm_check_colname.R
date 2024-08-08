@@ -1,0 +1,36 @@
+test_that("pm_check_colname work with New Pmetrics version", {
+  test <- read.csv(test_path("testdata/PMtestv2.csv"))
+  output <- pm_check_colname(test)
+  expect_type(output, "list")
+  expect_true(output$check$mandatory)
+  expect_true(output$check$complete)
+  expect_equal(output$var$name, c("id", "evid", "time", "dur", "dose", "addl", "ii", "input", "out", "outeq", "c0", "c1", "c2", "c3"))
+  expect_equal(output$var$pos, seq(1, 14, by = 1))
+  expect_equal(output$covar$name, c("wt", "age"))
+  expect_equal(output$covar$pos, c(15, 16))
+})
+
+
+test_that("pm_check_colname work with Old Pmetrics version", {
+  test <- read.csv(test_path("testdata/PMtest_old.csv"), skip = 1)
+  output <- pm_check_colname(test)
+  expect_type(output, "list")
+  expect_true(output$check$mandatory)
+  expect_true(output$check$complete)
+  expect_equal(output$var$name, c("id", "evid", "time", "dur", "dose", "addl", "ii", "input", "out", "outeq", "c0", "c1", "c2", "c3"))
+  expect_equal(output$var$pos, seq(1, 14, by = 1))
+  expect_equal(output$covar$name, c("wt", "age"))
+  expect_equal(output$covar$pos, c(15, 16))
+})
+
+test_that("pm_check_colname work with Old Pmetrics version", {
+  test <- read.csv(test_path("testdata/PMtestv2_minimal.csv"))
+  output <- pm_check_colname(test)
+  expect_type(output, "list")
+  expect_true(output$check$mandatory)
+  expect_false(output$check$complete)
+  expect_equal(output$var$name, c("id", "time", "dur", "dose", "out"))
+  expect_equal(output$var$pos, c(1, 2, 3, 4, 5))
+  expect_equal(output$covar$name, character(0))
+  expect_equal(output$covar$pos, integer(0))
+})
