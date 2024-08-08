@@ -1,0 +1,19 @@
+
+// Error file 
+PM_error.csv                // missing ID which is mandatory for Pmetrics to have
+
+// file to test function with old Pmetrics skeleton
+PMtest_old_csv2.csv         // csv file with european delimiters (semi colon) and separato(comma)
+PMtest_old.csv              // classic csv file
+PMtest_old.xlsx             // classic Excel XLSX file
+PMtest_old.xls              // classic Excel xls file (retro compatibility)
+
+// file to test function with new Pmetrics skeleton (Version > 1.97.0)
+    // Pmetrics version 2.0 only require 5 input : ID, TIME, DUR, DOSE, OUT
+    // Pmetrics version 2.0 doesn't required the first line to be #DEC_11
+    
+PMtestv2.csv                // classic csv file (full data)
+PMtestv2.xlsx               // classic Excel XLSX file (full data)
+PMtestv2.xls                // classic Excel xls file (retro compatibility) (full data)
+PMtestv2_minimal.csv        // Minimal file with ID, TIME, DUR, DOSE, OUT but no covariate
+PMtestv2_minimal_cov.csv    // Minimal file with ID, TIME, DUR, DOSE, OUT **WITH** covariate

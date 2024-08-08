@@ -28,36 +28,18 @@ read_pmetrics <- function(data, pm_vers = NULL, ...) {
     pm_data <- auto_read(data, skip = skip)
   }
 
+  # Check required variable
   file_info <- pm_check_colname(pm_data)
-  # add check to verify colname, if number, return pm_vers = 2 and reload file
   if (!file_info$check$mandatory) stop("Some mandatory variable are missing. Please check that 'ID', 'TIME', 'DUR', 'DOSE' and 'OUT' are present.")
-  # add missing column that are not mandatory in Pmetrics V2
 
-  # rename first column to ID
-  colnames(pm_data)[1] <- "ID"
+  # add check to verify colname, if number, return pm_vers = 2 and reload file
 
-  # pm_check_colname
+  # add missing column that are not mandatory in Pmetrics V2 and add covar if existing
+  if (!file_info$check$complete) {
+    pm_data <- pm_autocomplete(pm_data, file_info$var$missing, file_info$covar$name)
+  }
 
-
-  # check col and recreate
-
-
-  pm_final_data <- list(
-    id = pm_data[1],
-    event_id = pm_data["EVID"],
-    time = pm_data["TIME"],
-    dur = pm_data["DUR"],
-    dose = pm_data["DOSE"],
-    addl = pm_data["ADDL"],
-    ii = pm_data["II"],
-    input = pm_data["INPUT"],
-    out = pm_data["OUT"],
-    error_coeff = pm_data[c("C0", "C1", "C2", "C3")],
-    covariate = pm_data[c(15, length(pm_data))] # get C3 length and then extract everything beyond C3
-  )
-
-
-  return(pm_final_data)
+  return(pm_data)
 }
 
 
@@ -71,7 +53,7 @@ read_pmetrics <- function(data, pm_vers = NULL, ...) {
 #' @param data is the data in which the colum names must be checked
 #'
 #' @author Romain Garreau
-#' @export 
+#' @export
 
 pm_check_colname <- function(data) {
 
@@ -81,6 +63,7 @@ pm_check_colname <- function(data) {
   # extract existing variable *var_name*
   var_pos <- which(pm_colnames %in% expected_pm_colnames)
   var_names <- pm_colnames[var_pos]
+  var_missing <- expected_pm_colnames[which(not_in(expected_pm_colnames, pm_colnames))]
 
   # check if the 5 mandatory variable are present. NB : the check is not case sensitive
   mandatory_pm_var <- c("id", "time", "dur", "dose", "out")
@@ -96,7 +79,7 @@ pm_check_colname <- function(data) {
   return(
     list(
       check = list(mandatory = is_mandatory, complete = is_complete),
-      var = list(name = var_names, pos = var_pos),
+      var = list(name = var_names, pos = var_pos, missing = var_missing),
       covar = list(name = cov_name, pos = cov_pos)
     )
   )
@@ -110,26 +93,46 @@ pm_check_colname <- function(data) {
 #' @description
 #' this function will add the necessary covariate in order to translate an incomplete Pmetrics file (Version 2 only)
 #'
-#' @param data correspond to the data imported to run Pmetrics. Must be a dataframe
+#' @param data data from Pmetrics
+#' @param missing_var missing variable. See ?PKtool::pm_check_colname
+#' @param cov correspond to the covariate present in the dataset
 #'
 #' @author Romain Garreau
 #' @export
 
 
-pm_autocomplete <- function(data) {
-  # extract the column names
-  var_names_raw <- colnames(data)
-  expected_names <- c("id", "evid", "time", "dur", "dose", "addl", "ii", "input", "out", "outeq", "c0", "c1", "c2", "c3")
+pm_autocomplete <- function(data, missing_var, cov = NULL) {
 
-  # get the rank of C3 that is the last variable in the dataset
-  # check the minimum variable requierment for 2.0.0 Pmetrics file and create test to exclude covariates
+  colnames(data) <- tolower(colnames(data))
 
-  # return the rank of absent covar
-  rank_test <- grepl(paste(expected_names, collapse = "|"), tolower(var_names_raw))
+  if (!identical(cov, character(0))) {
+    covariate <- dplyr::select(data, dplyr::all_of(cov))
+    data <- dplyr::select(data, -dplyr::all_of(cov))
+  }
 
-  # To handle this, we need to check which names are not present in the dataset and to create a rule to add the
-  # right variable. For some variable return a warning to tell that some mandatory variable are missing
-  # Can't create, ID, EVID, Time, DOSE and OUT
+  if ("evid" %in% missing_var) { data <- dplyr::mutate(data, evid = ifelse(data$dose == ".", 0, 1))}
+  if ("addl" %in% missing_var) { data <- dplyr::mutate(data, addl = ".")}
+  if ("ii" %in% missing_var) { data <- dplyr::mutate(data, ii = ".")}
+  if ("input" %in% missing_var) { data <- dplyr::mutate(data, input = ifelse(data$dose == ".", ".", "1"))}
+  if ("outeq" %in% missing_var) { data <- dplyr::mutate(data, outeq = ifelse(data$out == ".", ".", "1"))}
+  if ("c0" %in% missing_var) { data <- dplyr::mutate(data, c0 = ".")}
+  if ("c1" %in% missing_var) { data <- dplyr::mutate(data, c1 = ".")}
+  if ("c2" %in% missing_var) { data <- dplyr::mutate(data, c2 = ".")}
+  if ("c3" %in% missing_var) { data <- dplyr::mutate(data, c3 = ".")}
+
+  # relocate data
+  data <- data |>
+    dplyr::relocate("evid", .after = "id") |>
+    dplyr::relocate("out", .after = "input")
+
+  if (!identical(cov, character(0))) {
+    data <- data |>
+      dplyr::bind_cols(covariate)
+  }
+
+  colnames(data) <- toupper(colnames(data))
+
+  return(as.data.frame(data))
 }
 
 

@@ -4,10 +4,14 @@
 \alias{pm_autocomplete}
 \title{pm_autocomplete}
 \usage{
-pm_autocomplete(data)
+pm_autocomplete(data, missing_var, cov = NULL)
 }
 \arguments{
-\item{data}{correspond to the data imported to run Pmetrics. Must be a dataframe}
+\item{data}{data from Pmetrics}
+
+\item{missing_var}{missing variable. See ?PKtool::pm_check_colname}
+
+\item{cov}{correspond to the covariate present in the dataset}
 }
 \description{
 this function will add the necessary covariate in order to translate an incomplete Pmetrics file (Version 2 only)
