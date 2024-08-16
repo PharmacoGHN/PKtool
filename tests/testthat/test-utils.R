@@ -9,15 +9,15 @@ test_that("auto_read return intended error", {
 })
 
 test_that("auto_read read csv and takes other argument", {
-  expected_csv <- read.csv(test_path("testdata/PMtest_old.csv"), skip = 1)
-  expected_csv2 <- read.csv2(test_path("testdata/PMtest_old_csv2.csv"), sep = ";", skip = 1)
-  expect_equal(auto_read(test_path("testdata/PMtest_old.csv"), skip = 1), expected_csv)
-  expect_equal(auto_read(test_path("testdata/PMtest_old_csv2.csv"), sep = ";", skip = 1), expected_csv2)
+  expected_csv <- read.csv(test_path("testdata/pmetrics_file/PMtest_old.csv"), skip = 1)
+  expected_csv2 <- read.csv2(test_path("testdata/pmetrics_file/PMtest_old_csv2.csv"), sep = ";", skip = 1)
+  expect_equal(auto_read(test_path("testdata/pmetrics_file/PMtest_old.csv"), skip = 1), expected_csv)
+  expect_equal(auto_read(test_path("testdata/pmetrics_file/PMtest_old_csv2.csv"), sep = ";", skip = 1), expected_csv2)
 })
 
 test_that("auto_read read excel files", {
-  expected_xlsx <- readxl::read_xlsx(test_path("testdata/PMtest_old.xlsx"), skip = 1)
-  expected_xls <- readxl::read_xls(test_path("testdata/PMtest_old.xls"), skip = 1)
-  expect_equal(auto_read(test_path("testdata/PMtest_old.xlsx"), skip = 1), expected_xlsx)
-  expect_equal(auto_read(test_path("testdata/PMtest_old.xls"), skip = 1), expected_xls)
+  expected_xlsx <- readxl::read_xlsx(test_path("testdata/pmetrics_file/PMtest_old.xlsx"), skip = 1)
+  expected_xls <- readxl::read_xls(test_path("testdata/pmetrics_file/PMtest_old.xls"), skip = 1)
+  expect_equal(auto_read(test_path("testdata/pmetrics_file/PMtest_old.xlsx"), skip = 1), expected_xlsx)
+  expect_equal(auto_read(test_path("testdata/pmetrics_file/PMtest_old.xls"), skip = 1), expected_xls)
 })

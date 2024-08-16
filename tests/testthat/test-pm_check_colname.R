@@ -1,5 +1,5 @@
 test_that("pm_check_colname work with New Pmetrics version", {
-  test <- read.csv(test_path("testdata/PMtestv2.csv"))
+  test <- read.csv(test_path("testdata/pmetrics_file/PMtestv2.csv"))
   output <- pm_check_colname(test)
   expect_type(output, "list")
   expect_true(output$check$mandatory)
@@ -13,7 +13,7 @@ test_that("pm_check_colname work with New Pmetrics version", {
 
 
 test_that("pm_check_colname work with Old Pmetrics version", {
-  test <- read.csv(test_path("testdata/PMtest_old.csv"), skip = 1)
+  test <- read.csv(test_path("testdata/pmetrics_file/PMtest_old.csv"), skip = 1)
   output <- pm_check_colname(test)
   expect_type(output, "list")
   expect_true(output$check$mandatory)
@@ -26,7 +26,7 @@ test_that("pm_check_colname work with Old Pmetrics version", {
 })
 
 test_that("pm_check_colname work with Old Pmetrics version", {
-  test <- read.csv(test_path("testdata/PMtestv2_minimal.csv"))
+  test <- read.csv(test_path("testdata/pmetrics_file/PMtestv2_minimal.csv"))
   output <- pm_check_colname(test)
   expect_type(output, "list")
   expect_true(output$check$mandatory)

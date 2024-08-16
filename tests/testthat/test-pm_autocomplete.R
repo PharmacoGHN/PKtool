@@ -1,8 +1,8 @@
 test_that("pm_autcomplete return the appropriate output", {
-  test <- read.csv(test_path("testdata/PMtestv2_minimal.csv"))
+  test <- read.csv(test_path("testdata/pmetrics_file/PMtestv2_minimal.csv"))
   colnames(test) <- tolower(colnames(test))
   output <- pm_autocomplete(test, missing_var = c("evid", "addl", "ii", "input", "outeq", "c0", "c1", "c2", "c3"))
-  output_expected <- read.csv(test_path("testdata/PMtest_old.csv"), skip = 1, header = TRUE)
+  output_expected <- read.csv(test_path("testdata/pmetrics_file/PMtest_old.csv"), skip = 1, header = TRUE)
   colnames(output_expected) <- gsub("X.", "", colnames(output_expected))
 
   expect_true(inherits(output, "data.frame"))
