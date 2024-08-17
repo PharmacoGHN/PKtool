@@ -61,3 +61,23 @@ auto_read <- function(file, sep = ",", ...) {
 
   return(file)
 }
+
+#' case_colname
+#'
+#' wrapper function that help modify column name to upper or lower case in order to be case unsensitive
+#'
+#' @param data dataset provided
+#' @param case_type Only lower or upper cases are accepted.
+#'
+#' @author Romain Garreau
+#' @export
+
+
+case_colname <- function(data, case_type = c("lower", "upper")) {
+  if (!is.data.frame(data)) stop("Error: data provided is not a dataframe")
+  if (not_in(case_type, c("lower", "upper"))) stop("Error: Only 'lower' and 'upper' are supported")
+  if (case_type == "lower") colnames(data) <- tolower(colnames(data))
+  if (case_type == "upper") colnames(data) <- toupper(colnames(data))
+
+  return(data)
+}
