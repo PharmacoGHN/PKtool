@@ -15,7 +15,7 @@
 #' @param molecule = molecule study, by default = NULL if none given
 
 
-pm2psim <- function(
+psim2pm <- function(
     x,
     sex = 0,
     time = "h",
