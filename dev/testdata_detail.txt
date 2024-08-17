@@ -17,3 +17,8 @@ PMtestv2.xlsx               // classic Excel XLSX file (full data)
 PMtestv2.xls                // classic Excel xls file (retro compatibility) (full data)
 PMtestv2_minimal.csv        // Minimal file with ID, TIME, DUR, DOSE, OUT but no covariate
 PMtestv2_minimal_cov.csv    // Minimal file with ID, TIME, DUR, DOSE, OUT **WITH** covariate
+
+
+// output translation files 
+pm2monolix_nouadid.csv      // expected output give the file PMtestv2 or PMtest_old ; nouadid = no unique adminstration
+pm2monolix_unique_id.csv    // expected output give the file PMtestv2 or PMtest_old ; contain unique adminstration and observation id
