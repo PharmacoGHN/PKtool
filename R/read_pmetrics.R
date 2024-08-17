@@ -39,6 +39,7 @@ read_pmetrics <- function(data, pm_vers = NULL, ...) {
     pm_data <- pm_autocomplete(pm_data, file_info$var$missing, file_info$covar$name)
   }
 
+  attr(pm_data, "software") <- "pm.object"
   return(pm_data)
 }
 

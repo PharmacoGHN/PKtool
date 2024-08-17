@@ -58,14 +58,12 @@ test_that("read_pmetrics recognize second gen Pmetrics (csv)", {
   minimal_with_cov <- test_path("testdata/pmetrics_file/PMtestv2_minimal_cov.csv")  # minimal data with covariate
 
   expected_output_new_version <- read.csv(new_version_csv) #full file nothing to change
-  # expected_output_wo_cov <- read.csv(minimal_wo_cov) # minimal data no covariate
-  # expected_output_with_cov <- read.csv(minimal_with_cov) # minimal data with covariate
+  expected_output_wo_cov <- expected_output_new_version[-9, -c(15:16)] # minimal data no covariate
+  expected_output_with_cov <- expected_output_new_version[-9, ] # minimal data with covariate
 
   attr(expected_output_new_version, "software") <- "pm.object"
-  expected_output_wo_cov <- expected_output_new_version[-9, -c(15:16)]
-  expected_output_with_cov <- expected_output_new_version[-9, ]
-  # attr(expected_output_wo_cov, "software") <- "pm.object"
-  # attr(expected_output_with_cov, "software") <- "pm.object"
+  attr(expected_output_wo_cov, "software") <- "pm.object"
+  attr(expected_output_with_cov, "software") <- "pm.object"
 
   expect_true(inherits(read_pmetrics(new_version_csv, pm_vers = 2), "data.frame"))
   expect_equal(read_pmetrics(new_version_csv, pm_vers = 2), expected_output_new_version)
