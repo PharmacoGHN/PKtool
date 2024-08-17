@@ -7,8 +7,9 @@
 pm2monolix(
   input_file = NULL,
   iv = TRUE,
-  pm_vers = "old",
-  output_file = "pm2monolix.csv"
+  pm_vers = 1,
+  output_file = "pm2monolix.csv",
+  ...
 )
 }
 \arguments{
@@ -16,11 +17,15 @@ pm2monolix(
 
 \item{iv}{is drug given by iv route ? (TRUE or FALSE)}
 
-\item{pm_vers}{a string argument that can take either "old" or "new". Refer to the datafile version of
-Pmetrics. Old represent the version before 1.97.0}
+\item{pm_vers}{a numeric arugment that can be either 1 or 2. It refers to "old" or "new" Pmetrics version. Set to 1 by default (all Pmetrics version before 1.97)}
 
 \item{output_file}{name given to the file. default = "translate.csv"}
+
+\item{...}{additionnal argument that can be passed on read function (see utils::read.csv() and readxl::read_excel())}
 }
 \description{
 'pm2monolix' is a function intended to transform a pm file into a file readable by Monolix(R)
+}
+\author{
+Romain Garreau
 }
