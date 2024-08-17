@@ -2,6 +2,7 @@
 
 export(auto_read)
 export(case_colname)
+export(mlx2pm)
 export(not_in)
 export(pm2monolix)
 export(pm_autocomplete)
