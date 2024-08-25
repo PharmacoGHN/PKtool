@@ -39,7 +39,7 @@ read_pmetrics <- function(data, pm_vers = NULL, ...) {
   file_info <- pm_check_colname(pm_data)
   if (!file_info$check$mandatory) stop("Some mandatory variable are missing. Please check that 'ID', 'TIME', 'DUR', 'DOSE' and 'OUT' are present.")
 
-  # add check to verify colname, if number, return pm_vers = 2 and reload file
+  # todo : create a check to verify colname, if number, return pm_vers = 2 and reload file
 
   # add missing column that are not mandatory in Pmetrics V2 and add covar if existing
   if (!file_info$check$complete) {

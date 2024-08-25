@@ -10,8 +10,7 @@
 
 
 mlx2pm <- function(input_file) {
-  pm_file <- input_file
-  return(pm_file)
+
 }
 
 # add mlx2psim; mlx2mrg ;mlx2psim
