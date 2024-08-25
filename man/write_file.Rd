@@ -4,23 +4,22 @@
 \alias{write_file}
 \title{write_file}
 \usage{
-write_file(
-  object,
-  filename,
-  software = c("Pmetrics", "Lixoft", "PKsim", "NONMEM"),
-  ext = c("csv", "xlsx", "xls", "tsv")
-)
+write_file(object = NULL, filename = NULL, ...)
 }
 \arguments{
 \item{object}{is the object supplied to write the file. Must be a dataframe or tibble}
 
 \item{filename}{is the name the file should have}
 
-\item{software}{correspond to the software for which the file is adapted. Only Pmetrics, Lixoft suite, PKsim and NONMEM are supported}
-
-\item{ext}{dictate the type of file created
-(only file supported by pharmacometrics software are possible)}
+\item{...}{dictate the type of file created (only file supported by pharmacometrics software are possible)}
 }
 \description{
-write_file
+this function create a file corresponding to the software for which the file was translated.
+Only Pmetrics, Lixoft suite, PKsim and NONMEM type are supported. Software and extebsion type
+are automatically retrvied from the object which must have been translated with the PKtool function.
+Extention type is retrieved directly from the path given as the user must specify the path to save
+the file by giving it name and extensiton ex : filename = "C:/newdata.csv"
+}
+\author{
+Romain Garreau
 }
