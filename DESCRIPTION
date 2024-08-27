@@ -15,6 +15,7 @@ Imports:
     openxlsx,
     readr,
     rlang,
+    stringr,
     tools,
     utils
 Suggests: 

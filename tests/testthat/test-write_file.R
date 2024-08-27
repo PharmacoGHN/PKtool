@@ -5,5 +5,5 @@ testthat::test_that("return error if argument not in the list", {
    testthat::expect_error(write_file(), "Error: there is no object to save.")
    testthat::expect_error(write_file("test"), "Error: give a the path where to save the file.")
    testthat::expect_error(write_file(test_data, "filename.ext"), "This file extension is not supported. Please select file among csv, xlsx, xls or tsv", fixed = TRUE)
-   testthat::expect_error(write_file(test_data, "filename.csv"), "Please select a software from Pmetrics, Lixoft, PKsim, or NONMEM. The other software are not supported")
+   testthat::expect_error(write_file(test_data, "filename.csv"), "Please select a software from Pmetrics, Lixoft, PKsim, or NONMEM.")
 })
