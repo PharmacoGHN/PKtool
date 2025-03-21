@@ -41,6 +41,9 @@ read_file.mb2 <- function(file_path) {
     Weight_date = character(),
     Weight_value = numeric()
   )
+  
+  # set colnames to lower cases
+  colnames(weight_df) <- tolower(colnames(weight_df))
 
   # create empty df to store the dosing history
   dose_df <-
@@ -52,11 +55,13 @@ read_file.mb2 <- function(file_path) {
       Dose = as.numeric(),
       Creatinin_Clearance = as.numeric()
     )
+  # set colnames to lower cases
+  colnames(dose_df) <- tolower(colnames(dose_df))
 
   # create empty df to store the level history
   level_df <- data.frame(
-    tdm_time = as.character(),
-    Concentration = as.numeric()
+    tdm_date = as.character(),
+    tdm_value = as.numeric()
   )
 
   # Variable mandatory to adapt file based on the different number of inputs (weight, dose, level)
