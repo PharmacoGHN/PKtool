@@ -1,43 +1,3 @@
-
-
-# Input:
-admin_data <- tibble::tribble(
-    ~admin_date, ~route, ~infusion_rate, ~infusion_duration, ~dose, ~ccr,
-    "2025/03/07 10:55",	"IV",	3000,	0.5,	1500,	163.6,
-    "2025/03/08 10:55",	"IV",	3000,	0.5,	1500,	163.6,
-    "2025/03/09 10:55",	"IV",	3000,	0.5,	1500,	163.6,
-    "2025/03/10 10:55",	"IV",	3000,	0.5,	1500,	163.6,
-    "2025/03/11 10:55",	"IV",	3000,	0.5,	1500,	163.6
-)
-
-tdm_data <- tibble::tribble(
-  ~tdm_date, ~tdm_value,
-  "2025/03/08 10:50",	5,
-  "2025/03/09 10:50",	20
-)
-
-weight_data <- tibble::tribble(
-  ~weight_date, ~weight_value,
-  "2025/03/07 10:55",	70,
-  "2025/03/09 10:55",	75,
-)
-
-# Output:
-pk_data <- tibble::tribble(
-  ~date, ~time, ~route, ~infusion_rate, ~infusion_duration, ~dose, ~ccr, ~tdm_value, ~weight_value,
-  "2025/03/07", "10:55",	"IV",	3000,	0.5,	1500,	163.6,	NA,	70,
-  "2025/03/08", "10:50",	"IV",	3000,	0.5,	1500,	163.6,	5,	70,
-  "2025/03/08", "10:55",	"IV",	3000,	0.5,	1500,	163.6,  NA,	70,
-  "2025/03/09", "10:50",	"IV",	3000,	0.5,	1500,	163.6,	20,	75,
-  "2025/03/09", "10:55",	"IV",	3000,	0.5,	1500,	163.6,	NA,	75,
-  "2025/03/10", "10:55",	"IV",	3000,	0.5,	1500,	163.6,	NA,	75,
-  "2025/03/11", "10:55",	"IV",	3000,	0.5,	1500,	163.6,	NA,	75
-)
-
-# mb2 file parse
-read_file.mb2("dev/CEFE_DOJH.mb2")
-
-# Function:
 #' rearrange_admin_data
 #'
 #' @param admin_data A tibble with the administration data
@@ -114,12 +74,12 @@ create_pk_data <- function(admin_data, tdm_data, weight_data) {
   return(pk_data)
 }
 
-#' format_pk_data
+#' mb2_parse
 #'
-#' @param pk_data A tibble with the PK data
+#' @param mb2_file a mb2_file
 #' @return A tibble with the formatted PK data
 #' @export
-#' @author Your Name
+#' @author Romain Garreau
 #'
 
 mb2_parse <- function(mb2_file) {
